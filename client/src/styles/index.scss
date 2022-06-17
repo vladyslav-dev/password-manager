@@ -5,3 +5,9 @@ body {
     font-family: 'Mulish', sans-serif;
     color: $LIGHT-COLOR;
 }
+
+.dashboardContainer {
+    max-width: 970px;
+    margin: 0 auto;
+    padding: 0 15px;
+}

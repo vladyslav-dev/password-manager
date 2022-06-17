@@ -1,0 +1,16 @@
+@import '../../styles/index.scss';
+
+.wrapper {
+    background-color: $MAIN-BACKGROUND;
+    color: $DARK-COLOR;
+    height: 100vh;
+
+    .mainContent {
+        height: calc(100vh - #{$NAVBAR-HEIGHT} - 2px);
+        padding: 68px 0 26px 0;
+
+        .mainContainer {
+            height: 100%;
+        }
+    }
+}

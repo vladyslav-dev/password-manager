@@ -3,17 +3,19 @@
 .button {
     all: unset;
     background: $MAIN-GRADIENT;
+    color: $LIGHT-COLOR;
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 14px;
-    height: 36px;
+    font-size: 13px;
+    min-height: 36px;
     padding: 0 48px;
+    text-align: center;
     border-radius: 26px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    @include lowTransition;
+    @include useLowTransition;
 
     &.disable {
         opacity: .6;

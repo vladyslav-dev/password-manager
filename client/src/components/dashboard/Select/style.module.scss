@@ -1,0 +1,81 @@
+@import '../../../styles/index.scss';
+
+.selectWrapper {
+    width: 100%;
+    position: relative;
+
+    .select {
+        border-radius: 24px;
+        border: 2px solid $DARK-COLOR;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 16px;
+        min-height: 36px;
+        width: 100%;
+        opacity: .6;
+        cursor: pointer;
+
+        .selected {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        svg {
+            @include useLowTransition;
+        }
+    }
+
+    .options {
+        @include useDropShadow;
+        @include useLowTransition;
+        background-color: $LIGHT-COLOR;
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        bottom: -12px;
+        width: 100%;
+        transform: translateY(100%);
+        z-index: 2;
+        border-radius: 12px;
+        padding: 12px;
+
+        .noGroups {
+            font-weight: 700;
+            font-size: 12px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .hr {
+            display: inline-block;
+            background-color: #EFEFEF;
+            height: 2px;
+            width: 100%;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
+        .newGroupButton {
+            display: flex;
+            justify-content: center;
+
+
+        }
+    }
+
+    &.active {
+
+        .select {
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+
+        .options {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}

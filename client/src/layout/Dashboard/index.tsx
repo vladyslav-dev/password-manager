@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import Navbar from '../../components/dashboard/Navbar';
+import styles from './style.module.scss';
 
 interface IDashboardProps {
     children?: React.ReactNode;
@@ -7,9 +9,15 @@ interface IDashboardProps {
 const DashboardLayout: React.FC<IDashboardProps> = ({ children }) => {
 
     return (
-        <div>
-            Dashboard
-            {children}
+        <div className={styles.wrapper}>
+            <Navbar />
+            <div className={styles.dashboardContainer}>
+                <div className={styles.mainContent}>
+                    <div className={styles.mainContainer}>
+                        {children}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

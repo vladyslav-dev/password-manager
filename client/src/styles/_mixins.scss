@@ -1,3 +1,40 @@
-@mixin lowTransition {
+@mixin useLowTransition {
     transition: all .3s ease-in-out;
+}
+
+@mixin useDropShadow {
+    box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.2);
+}
+
+@mixin useMainSectionStyles {
+    @include useDropShadow;
+    padding: 26px;
+    background-color: $LIGHT-COLOR;
+    height: 100%;
+    border-radius: 24px;
+}
+
+@mixin useFormStyles {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 48px;
+        width: 100%;
+
+        .formContainer {
+            width: clamp(300px, 80%, 315px);
+
+            .formItem {
+                display: flex;
+                justify-content: center;
+
+                &:not(:last-child) {
+                    margin-bottom: 24px;
+                }
+
+                &:last-child {
+                    margin-top: 48px;
+                }
+            }
+        }
 }

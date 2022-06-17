@@ -9,6 +9,8 @@ import Login from './pages/Login';
 import AuthLayout from './layout/Authorization';
 import Registration from './pages/Registration';
 import { IAuthResponse } from './types/auth';
+import DashboardLayout from './layout/Dashboard';
+import NewPassword from './pages/NewPassword';
 
 const App: React.FC = () => {
 
@@ -50,13 +52,17 @@ const App: React.FC = () => {
       {isAuth === null ? (
         <div>Loading...</div>
       ) : isAuth ? (
+        <DashboardLayout>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/new-password" element={<NewPassword />} />
+            <Route path="/dashboard/new-group" element={<Dashboard />} />
             <Route
               path="*"
               element={<Navigate to="/dashboard" replace />}
             />
           </Routes>
+        </DashboardLayout>
       ) : (
         <AuthLayout>
           <Routes>

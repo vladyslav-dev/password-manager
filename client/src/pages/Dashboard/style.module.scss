@@ -1,0 +1,41 @@
+@import '../../styles/index.scss';
+
+@mixin useFlexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard {
+    display: flex;
+    height: 100%;
+
+    color: $DARK-COLOR;
+
+    .aside {
+        @include useFlexColumn;
+        flex: 1;
+        max-width: 286px;
+
+
+        .asideCard {
+            &:not(:last-child) {
+                margin-bottom: $BLOCK-GAP;
+            }
+        }
+    }
+
+    .main {
+        @include useFlexColumn;
+        margin-left: $BLOCK-GAP;
+        flex: 1;
+
+        .toolbar {
+            border: 1px solid red;
+            margin-bottom: $BLOCK-GAP;;
+        }
+
+        .mainSection {
+            @include useMainSectionStyles;
+        }
+    }
+}

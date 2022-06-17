@@ -1,0 +1,89 @@
+@import '../../../styles/index.scss';
+
+.navbar {
+    width: 100%;
+    height: $NAVBAR-HEIGHT;
+    background-color: $LIGHT-COLOR;
+
+    .dashboardContainer {
+        height: 100%;
+
+        .navbarContainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            height: 100%;
+
+            .logo {
+                position: absolute;
+                bottom: -40px;
+
+                img {
+                    width: 96px;
+                    height: 96px;
+                }
+            }
+
+            .logout {
+                all: unset;
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                span {
+                    color: $DARK-COLOR;
+                    font-weight: 700;
+                    font-size: 15px;
+                    margin-right: 10px;
+                }
+
+                svg {
+                    @include useLowTransition;
+                }
+
+                .options {
+                    @include useDropShadow;
+                    @include useLowTransition;
+                    cursor: default;
+
+                    position: absolute;
+                    bottom: -25px;
+                    right: -5px;
+                    width: 100px;
+                    height: 42px;
+                    z-index: 2;
+                    background-color: $LIGHT-COLOR;
+
+                    border-radius: 8px;
+                    padding: 5px;
+                    display: flex;
+                    align-items: center;
+
+                    visibility: hidden;
+                    opacity: 0;
+
+                    span {
+                        font-weight: 700;
+                        font-size: 13px;
+                        color: $DANGER-COLOR;
+                        padding: 5px;
+                        cursor: pointer;
+                    }
+                }
+
+                &.active {
+                    svg {
+                        transform: rotate(180deg);
+                    }
+
+                    .options {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
