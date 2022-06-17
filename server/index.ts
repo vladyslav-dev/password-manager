@@ -13,7 +13,11 @@ const app = express()
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors())
+// app.use(cors())
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
 
 
 // Routes
@@ -31,8 +35,6 @@ const start = async () => {
 
         if (MONGO_URI) {
             mongoose.connect(MONGO_URI, {
-                useCreateIndex: true,
-                useFindAndModify: false,
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             } as ConnectOptions, (err) => {

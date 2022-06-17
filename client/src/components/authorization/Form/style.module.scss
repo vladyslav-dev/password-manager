@@ -1,0 +1,74 @@
+@import '../../../styles/index.scss';
+
+.formBox {
+    width: clamp(300px, 90vw, 480px);
+    height: 620px;
+    background: rgba(23, 23, 23, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(35px);
+    border-radius: 24px;
+    padding: 24px;
+
+    .formHead {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 54px;
+
+        .formLogo {
+
+        }
+
+        h1 {
+            margin-top: 24px;
+            font-weight: 700;
+            font-size: 26px;
+        }
+    }
+
+    .form {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 48px;
+        width: 100%;
+
+        .formContainer {
+            width: clamp(300px, 80%, 315px);
+
+            .formItem {
+                display: flex;
+                justify-content: center;
+
+                &:not(:last-child) {
+                    margin-bottom: 24px;
+                }
+
+                &:last-child {
+                    margin-top: 48px;
+                }
+            }
+        }
+    }
+
+    .navigate {
+        position: absolute;
+        bottom: 24px;
+        right: 24px;
+
+
+        .navigateText, .navigateLink {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .navigateLink {
+            background: linear-gradient(144.99deg, #FB5478 -0.77%, #FE7D6A 100.4%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            cursor: pointer;
+        }
+    }
+}

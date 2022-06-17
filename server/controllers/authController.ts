@@ -16,15 +16,15 @@ export default {
 
             const userData: IUserData = await UserService.registration({ login, password })
 
-            res.cookie("refreshToken", userData.refreshToken, {
+            res.cookie("password-manager:refreshToken", userData.refreshToken, {
               maxAge: 30 * 24 * 60 * 60 * 1000,
               httpOnly: true,
             });
 
             return res.json(userData) // {user, accessToken, refreshToken}
         } catch (err) {
-            return res.status(500).json({
-                message: err
+            return res.status(401).json({
+                message: `${err}`
             })
         }
     },
@@ -34,15 +34,14 @@ export default {
             const { login, password } = req.body
             const userData = await UserService.login({ login, password })
 
-            res.cookie("refreshToken", userData.refreshToken, {
+            res.cookie("password-manager:refreshToken", userData.refreshToken, {
               maxAge: 30 * 24 * 60 * 60 * 1000,
               httpOnly: true,
             })
-
             return res.json(userData) // {user, accessToken, refreshToken}
         } catch (err) {
-            return res.status(500).json({
-                message: err
+            return res.status(401).json({
+                message: `${err}`
             })
         }
     },
@@ -52,30 +51,33 @@ export default {
 
             const token = await UserService.logout(refreshToken)
 
-            res.clearCookie("refreshToken")
+            res.clearCookie("password-manager:refreshToken")
             res.json(token)
         } catch (err) {
-            return res.status(500).json({
-                message: err
+            return res.status(401).json({
+                message: `${err}`
             })
         }
     },
 
     async refresh(req: Request, res: Response) {
+        console.log('------------------')
+        console.log('check auth')
         try {
-            const { refreshToken } = req.cookies
 
-            const userData: IUserData = await UserService.refresh(refreshToken)
+            const userData = await UserService.refresh(req.cookies['password-manager:refreshToken'])
 
-            res.cookie("refreshToken", userData.refreshToken, {
+            res.cookie("password-manager:refreshToken", userData.refreshToken, {
                 maxAge: 30 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
             })
 
             return res.json(userData); // {user, accessToken, refreshToken}
         } catch (err) {
-            return res.status(500).json({
-                message: err
+            console.log(err)
+            console.log('error in contrl')
+            return res.status(401).json({
+                message: `${err}`
             })
         }
     }

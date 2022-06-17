@@ -6,12 +6,13 @@ import { IUserData, IRequestAuth } from '../types'
 export default function (req: IRequestAuth, res: Response, next: NextFunction) {
     try {
         const authorizationHeader = req.headers.authorization
+        console.log('authorizationHeader: ', authorizationHeader)
         if (!authorizationHeader) {
             throw new Error("Authorization failed")
         }
 
         const accessesToken = authorizationHeader.split(' ')[1]
-
+        console.log('accessesToken ', accessesToken)
         if (!accessesToken) {
             throw new Error("Authorization failed")
         }
@@ -23,7 +24,7 @@ export default function (req: IRequestAuth, res: Response, next: NextFunction) {
         next()
     } catch (err) {
         return res.status(401).json({
-            message: err
+            message: `${err}`
         })
     }
 }

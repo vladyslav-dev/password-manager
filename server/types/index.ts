@@ -9,8 +9,12 @@ export interface IUser extends Document {
     _doc: object
 }
 
+export interface IUserDto extends Omit<IUser, 'password' | '_doc'> {
+
+}
+
 export interface IUserData extends ITokenGroup {
-    user: IUser
+    user: IUserDto
 }
 
 export interface ITokenGroup {

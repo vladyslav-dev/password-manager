@@ -1,4 +1,4 @@
-import { IToken, ITokenGroup, IUser } from './../types/index'
+import { IToken, ITokenGroup, IUserDto } from './../types/index'
 import TokenModel from '../models/tokenModel'
 import jwt from 'jsonwebtoken'
 
@@ -6,7 +6,7 @@ const JWT_ACCESSES_SECRET = process.env.JWT_ACCESSES_SECRET || 'default_access_s
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'default_refresh_secret'
 
 export default {
-    generateTokens(payload: IUser) {
+    generateTokens(payload: IUserDto) {
         const accessToken = jwt.sign(payload, JWT_ACCESSES_SECRET, { expiresIn: '1h' })
         const refreshToken = jwt.sign(payload, JWT_REFRESH_SECRET, { expiresIn: '30d' })
 
@@ -46,6 +46,7 @@ export default {
         await TokenModel.deleteOne({ refresh_token: refreshToken })
     },
     async findToken(refreshToken: string) {
-        return await TokenModel.findOne({ refresh_token: refreshToken })
+        const token = await TokenModel.findOne({ refresh_token: refreshToken })
+        return token;
     }
 }

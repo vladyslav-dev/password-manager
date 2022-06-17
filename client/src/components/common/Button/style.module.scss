@@ -1,0 +1,22 @@
+@import '../../../styles/index.scss';
+
+.button {
+    all: unset;
+    background: $MAIN-GRADIENT;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    padding: 0 48px;
+    border-radius: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    @include lowTransition;
+
+    &.disable {
+        opacity: .6;
+        pointer-events: none;
+    }
+}
