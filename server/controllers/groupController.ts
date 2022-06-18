@@ -4,11 +4,15 @@ import { IRequestAuth } from "../types";
 
 
 export default {
-    getAll: async (req: Request, res: Response) => {  // GET ALL BY USER ID  - GET /api/groups
+    getAll: async (req: IRequestAuth, res: Response) => {  // GET ALL BY USER ID  - GET /api/groups
         try {
-            const groups = await GroupService.getAll();
-            console.log(groups)
-            res.status(200).json(groups);
+            if (req?.user?._id) {
+                const groups = await GroupService.getAll(req?.user?._id);
+                res.status(200).json(groups);
+            } else {
+                res.status(401).json({ message: 'Unauthorized, no user to create group.' });
+            }
+
         } catch (err) {
             res.status(500).json({ message: `${err}` });
         }

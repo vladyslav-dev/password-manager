@@ -41,7 +41,7 @@ export interface IPassword extends Document {
     username: string
     password: string
     group?: string
-    _doc: object
+    _doc?: object
 }
 
 export interface IGroup extends Document {
@@ -58,4 +58,9 @@ export interface IRequestAuth extends Request {
 export interface ICreateGroup {
     title: string
     userId: string
+}
+
+export interface ICreatePassword {
+    passwordData: IPassword;
+    userId: string;
 }

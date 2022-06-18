@@ -8,7 +8,7 @@ export interface IUpdateGroup {
 }
 
 export interface IGroup {
-    readonly _id: string;
+    _id: string;
     title: string;
     user: string;
 }
