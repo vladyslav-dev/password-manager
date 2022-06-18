@@ -1,48 +1,95 @@
 import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import useOnClickOutside from '../../../hooks/useOnclickOutside';
+import GroupService from '../../../services/GroupService';
+import { setGroups } from '../../../store/slices/password';
+import { IGroup } from '../../../types/group';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 import ToggleArrow from '../../icons/ToggleArrow';
 import styles from './style.module.scss';
 
 interface ISelectProps {
-    selectedOption: string;
-    options: any[];
+    selectedOption: IGroup | null;
+    options: IGroup[];
+    changeHandler: (event: React.MouseEvent) => void;
 }
 
 const Select: React.FC<ISelectProps> = ({
-    selectedOption = 'No group',
+    selectedOption,
     options,
+    changeHandler
 }) => {
+
+    const dispatch = useDispatch();
 
     const selectedRef = useRef<HTMLDivElement>(null);
     const optionsRef = useRef<HTMLDivElement>(null);
 
-    useOnClickOutside(() => setIsOptionsOpen(false), selectedRef, optionsRef);
+    const [newGroupValue, setNewGroupValue] = useState<string>('')
 
     const [isOptionsOpen, setIsOptionsOpen] = useState<boolean>(false);
 
+    useOnClickOutside(() => setIsOptionsOpen(false), selectedRef, optionsRef);
+
+    const changeOptionHandler = (event: React.MouseEvent) => {
+        setIsOptionsOpen(false);
+        changeHandler(event)
+    }
+
+    const createNewGroup = () => {
+        GroupService.createOne({ title: newGroupValue })
+            .then(() => {
+                GroupService.getAll()
+                    .then((groups: IGroup[]) => {
+                        dispatch(setGroups(groups))
+                    })
+                    .catch(err => console.log(err))
+            })
+            .catch(err => console.log(err))
+
+        setNewGroupValue('');
+    }
+
     return (
         <div className={`${styles.selectWrapper} ${isOptionsOpen ? styles.active : ''}`}>
-            <div className={styles.select} ref={selectedRef} onClick={() => setIsOptionsOpen(!isOptionsOpen)}>
-                <span className={styles.selected}>{selectedOption}</span>
+            <div
+                ref={selectedRef}
+                className={styles.select}
+                onClick={() => setIsOptionsOpen(!isOptionsOpen)}
+            >
+                <span className={styles.selected}>
+                    {selectedOption ? selectedOption.title : 'No group'}
+                </span>
                 <ToggleArrow />
             </div>
             <div className={styles.options} ref={optionsRef}>
-                {options.length ? options.map((option, index) => (
-                    <div>{option}</div>
-                )) : (
+                {options.length ? (
+                    <div className={styles.optionsList}>
+                        {options.map((option) => (
+                            <div
+                                key={option._id}
+                                id={option._id}
+                                onClick={changeOptionHandler}
+                                className={styles.optionsItem}
+                            >
+                                {option.title}
+                            </div>
+                        ))}
+                    </div>
+                ) : (
                     <div className={styles.noGroups}>You haven't created any groups yet.</div>
                 )}
                 <span className={styles.hr} />
-                <Input
-                    type={'text'}
-                    label="Group name"
-                    name="username"
-                    // value={formData.username}
-                    handler={() => {}}
-                    style={{ borderColor: '#000000', marginBottom: '20px', display: 'flex'}}
-                />
+                <div className={styles.newGroupInput}>
+                    <Input
+                        type={'text'}
+                        label="New group name"
+                        name="username"
+                        value={newGroupValue}
+                        handler={(event) => setNewGroupValue(event.target.value)}
+                    />
+                </div>
                 <div className={styles.newGroupButton}>
 
                     <Button
@@ -52,6 +99,8 @@ const Select: React.FC<ISelectProps> = ({
                             width: '100%',
                             fontSize:'11px'
                         }}
+                        disabled={!newGroupValue}
+                        clickHandler={createNewGroup}
                     />
                 </div>
 

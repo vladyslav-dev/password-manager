@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
             <div className={styles.dashboardContainer}>
                 <div className={styles.navbarContainer}>
                     <div className={styles.logo}>
-                        <img src={logo} alt="Logo" />
+                        <img src={logo} alt="Logo" onClick={() => navigate('/dashboard')} />
                     </div>
                     <button className={`${styles.logout} ${isOptionsOpen ? styles.active : ''}`} ref={buttonRef} onClick={optionsHandler}>
                         <span>{user?.login}</span>

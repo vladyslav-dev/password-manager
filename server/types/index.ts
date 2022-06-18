@@ -2,15 +2,18 @@ import { Request } from 'express'
 import { Document } from 'mongoose'
 
 export interface IUser extends Document {
-    readonly _id: string
+    _id: string
     login: string
     password: string
     password_storage: IPassword[]
     _doc: object
 }
 
-export interface IUserDto extends Omit<IUser, 'password' | '_doc'> {
+export interface IUserDto extends Omit<IUser, 'password' | '_doc'> {}
 
+export interface IUserJWT extends IUserDto {
+    iat: number
+    exp: number
 }
 
 export interface IUserData extends ITokenGroup {
@@ -44,9 +47,15 @@ export interface IPassword extends Document {
 export interface IGroup extends Document {
     readonly _id: string
     title: string
+    user: string
     _doc: object
 }
 
 export interface IRequestAuth extends Request {
-    user?: IUserData;
+    user?: IUserDto
+}
+
+export interface ICreateGroup {
+    title: string
+    userId: string
 }

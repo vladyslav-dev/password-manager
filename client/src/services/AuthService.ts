@@ -1,5 +1,5 @@
-import { IAuthService } from "../../types/auth";
-import $api from "../../api/index";
+import { IAuthService } from "../types/auth";
+import $api from "../api/index";
 
 const AuthService: IAuthService = {
     registration: async ({ login, password }) => {

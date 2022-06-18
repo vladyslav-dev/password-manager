@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
+import { IGroup, TGroupCollection } from '../../../types/group';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 import Select from '../Select';
 import styles from './style.module.scss';
+
 
 interface IPasswordFormProps {
     title: string;
@@ -12,14 +16,20 @@ interface IPasswordFormState {
     service: string;
     username: string;
     password: string;
-    group: string | null;
+    group: IGroup | null;
 }
 
 const PasswordForm: React.FC<IPasswordFormProps> = ({
     title
 }) => {
 
-    const [groups, setGroups] = useState<string[]>([]);
+    const { groupsCollection } = useSelector((state: RootState) => state.passwordReducer);
+
+    const [localGroupsCollection, setLocalGroupsCollection] = useState<TGroupCollection>({});
+
+    useEffect(() => {
+        setLocalGroupsCollection(groupsCollection);
+    }, [groupsCollection])
 
     const [formData, setFormData] = useState<IPasswordFormState>({
         service: '',
@@ -31,6 +41,11 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData({...formData, [name]: value})
+    }
+
+    const selectHandler = (event: React.MouseEvent) => {
+        const { id } = event.target as HTMLDivElement;
+        setFormData({...formData, group: localGroupsCollection[id]})
     }
 
     const sumbitHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -74,7 +89,11 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
                             />
                         </div>
                         <div className={styles.formItem}>
-                            <Select selectedOption={groups[0]} options={groups} />
+                            <Select
+                                selectedOption={formData.group}
+                                options={Object.values(localGroupsCollection)}
+                                changeHandler={selectHandler}
+                            />
                         </div>
                         <div className={styles.formItem}>
                             <Button

@@ -38,3 +38,12 @@
             }
         }
 }
+
+@mixin textOverflow($lineClamp) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lineClamp;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}

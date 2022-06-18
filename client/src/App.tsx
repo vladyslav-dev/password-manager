@@ -1,55 +1,22 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import AuthService from './services/AuthService';
-import { RootState } from './store';
-import { setAuth, setUser } from './store/slices/auth';
-import { useNavigate, Navigate, Routes, Route } from 'react-router-dom'
+import React from 'react';
+import { Navigate, Routes, Route } from 'react-router-dom'
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import AuthLayout from './layout/Authorization';
 import Registration from './pages/Registration';
-import { IAuthResponse } from './types/auth';
 import DashboardLayout from './layout/Dashboard';
 import NewPassword from './pages/NewPassword';
+import useCheckAuth from './hooks/useCheckAuth';
+import useFetchGlobalData from './hooks/useFetchGlobalData';
 
 const App: React.FC = () => {
 
-  const dispatch = useDispatch();
-  const { isAuth } = useSelector((state: RootState) => state.authReducer);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (localStorage.getItem("password-manager:accessToken")) {
-
-      AuthService.checkAuth()
-        .then((data: IAuthResponse) => {
-
-          dispatch(setAuth(true));
-          dispatch(setUser(data?.user));
-
-          localStorage.setItem('password-manager:accessToken', data?.accessToken);
-
-          navigate('/dashboard');
-        })
-        .catch(() => {
-
-          localStorage.removeItem('password-manager:accessToken');
-          dispatch(setAuth(false));
-
-          navigate('/login');
-
-          console.warn('Token is not define, Unauthorized')
-        })
-    } else {
-      dispatch(setAuth(false));
-      console.warn('Token is not define, Unauthorized')
-    }
-  }, [])
+  const { isAuth } = useCheckAuth();
+  const { isFetched, skipFetch } = useFetchGlobalData();
 
   return (
     <>
-      {isAuth === null ? (
+      {isAuth === null || (isFetched && skipFetch) ? (
         <div>Loading...</div>
       ) : isAuth ? (
         <DashboardLayout>
