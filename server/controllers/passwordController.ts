@@ -40,8 +40,8 @@ export default {
     },
     updateOne: async (req: Request, res: Response) => {
         try {
-            // const group = await GroupService.updateOne(req.body);
-            // res.status(200).json(group);
+            const updatedPassword = await PasswordService.updateOne(req.body);
+            res.status(200).json(updatedPassword);
         } catch (err) {
             res.status(500).json({ message: `${err}` });
         }

@@ -1,3 +1,4 @@
+import { IPassword } from './../types/index';
 import PasswordModel from '../models/passwordModel';
 import { ICreateGroup, ICreatePassword } from '../types';
 
@@ -20,8 +21,11 @@ export default {
          });
         return newPassword;
     },
-    updateOne: async (groupTitle: string, userId: string) => {
+    updateOne: async (passwordData: IPassword) => {
+        console.log(passwordData)
+        const updatedPassword = await PasswordModel.findOneAndUpdate({ _id: passwordData._id}, passwordData );
 
+        return updatedPassword;
     },
     deleteOne: async (id: string) => {
         await PasswordModel.findByIdAndDelete(id);

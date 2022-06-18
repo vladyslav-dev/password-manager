@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PasswordService from '../../../services/PasswordService';
 import { RootState } from '../../../store';
 import { setPasswordData } from '../../../store/slices/password';
-import { IGroup, TGroupCollection } from '../../../types/group';
+import { IGroup } from '../../../types/group';
+import { IPassword } from '../../../types/password';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 import Select from '../Select';
 import styles from './style.module.scss';
 
+type FormType = 'create' | 'update';
 
 interface IPasswordFormProps {
     title: string;
+    passwordData?: IPassword;
+    type: FormType;
 }
 
 interface IPasswordFormState {
@@ -23,7 +27,9 @@ interface IPasswordFormState {
 }
 
 const PasswordForm: React.FC<IPasswordFormProps> = ({
-    title
+    type,
+    title,
+    passwordData
 }) => {
 
     const dispatch = useDispatch();
@@ -34,10 +40,10 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
 
 
     const [formData, setFormData] = useState<IPasswordFormState>({
-        service: '',
-        username: '',
-        password: '',
-        group: null
+        service: passwordData?.service || '',
+        username: passwordData?.username || '',
+        password: passwordData?.password || '',
+        group: passwordData?.group ? groupsCollection[passwordData?.group] : null
     })
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,17 +59,35 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
     const sumbitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        PasswordService.createOne({
-            ...formData,
-            group: formData?.group?._id ?? null
-        })
-        .then(() => {
-            PasswordService.getAll()
-                .then(data => dispatch(setPasswordData(data)))
-                .catch(err => console.log(err))
-                .finally(() => navigate('/dashboard'))
-        })
-        .catch(err => console.log(err))
+        if (type === 'create') {
+            PasswordService.createOne({
+                ...formData,
+                group: formData?.group?._id ?? null
+            })
+            .then(() => {
+                PasswordService.getAll()
+                    .then(data => dispatch(setPasswordData(data)))
+                    .catch(err => console.log(err))
+                    .finally(() => navigate('/dashboard'))
+            })
+            .catch(err => console.log(err))
+        }
+
+        if (type === 'update') {
+            PasswordService.updateOne({
+                ...formData,
+                _id: passwordData?._id!,
+                user: passwordData?.user!,
+                group: formData?.group?._id ?? null
+            })
+            .then(() => {
+                PasswordService.getAll()
+                    .then(data => dispatch(setPasswordData(data)))
+                    .catch(err => console.log(err))
+                    .finally(() => navigate('/dashboard'))
+            })
+            .catch(err => console.log(err))
+        }
     }
 
     return (
@@ -112,7 +136,7 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
                         <div className={styles.formItem}>
                             <Button
                                 clickHandler={sumbitHandler}
-                                title={'ADD NEW PASSWORD'}
+                                title={type === 'create' ? 'ADD NEW PASSWORD' : 'UPDATE PASSWORD'}
                             />
                         </div>
                     </div>

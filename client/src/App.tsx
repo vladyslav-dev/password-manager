@@ -8,6 +8,7 @@ import DashboardLayout from './layout/Dashboard';
 import NewPassword from './pages/NewPassword';
 import useCheckAuth from './hooks/useCheckAuth';
 import useFetchGlobalData from './hooks/useFetchGlobalData';
+import EditPassword from './pages/EditPassword';
 
 const App: React.FC = () => {
 
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/new-password" element={<NewPassword />} />
+            <Route path="/dashboard/edit-password/:id" element={<EditPassword />} />
             <Route path="/dashboard/new-group" element={<Dashboard />} />
             <Route
               path="*"

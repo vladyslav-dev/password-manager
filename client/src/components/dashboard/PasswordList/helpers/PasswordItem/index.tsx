@@ -47,7 +47,7 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
     }
 
     const navigateToEditPage = () => {
-        navigate('/')
+        navigate(`/dashboard/edit-password/${passwordData._id}`);
     }
 
     const deleteCurrentItem = () => {

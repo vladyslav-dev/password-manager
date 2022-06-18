@@ -6,7 +6,7 @@ const NewPassword: React.FC = () => {
 
     return (
         <main className={styles.newPassword}>
-            <PasswordForm title={'New password'} />
+            <PasswordForm title={'New password'} type='create' />
         </main>
     )
 }
