@@ -24,6 +24,6 @@ export default {
 
     },
     deleteOne: async (id: string) => {
-
+        await PasswordModel.findByIdAndDelete(id);
     }
 }

@@ -3,11 +3,13 @@
 
 body {
     font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    line-height: 18px;
     color: $LIGHT-COLOR;
 }
 
 .dashboardContainer {
-    max-width: 970px;
+    max-width: 1070px;
     margin: 0 auto;
     padding: 0 15px;
 }

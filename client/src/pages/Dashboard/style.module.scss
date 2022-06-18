@@ -35,6 +35,21 @@
 
         .mainSection {
             @include useMainSectionStyles;
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #cecece;
+                border-radius:16px;
+
+                &:hover {
+                    background-color: #a8a8a8;
+                    opacity: .6;
+                }
+            }
         }
     }
 }

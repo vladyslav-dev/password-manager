@@ -7,7 +7,7 @@ const PasswordService: IPasswordService = {
         return response?.data;
     },
     getOne: async (id) => {
-        const response = await $api.get(`/password`, { params: { id } });
+        const response = await $api.get(`/password/${id}`);
         return response?.data;
     },
     createOne: async (passwordData) => {
@@ -18,7 +18,7 @@ const PasswordService: IPasswordService = {
         return response?.data;
     },
     deleteOne: async (id) => {
-        const response = await $api.delete(`/password`, { params: { id } });
+        const response = await $api.delete(`/password/${id}`);
         return response?.data;
     }
 }

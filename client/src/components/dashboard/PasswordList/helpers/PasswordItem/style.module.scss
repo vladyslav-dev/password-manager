@@ -1,0 +1,145 @@
+@import '../../../../../styles/index.scss';
+
+.passwordItem {
+    width: 100%;
+    height: 100px;
+    background-color: $MAIN-BACKGROUND;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    justify-content: space-between;
+
+    .passwordLogo {
+        width: 68px;
+        height: 68px;
+        border-radius: 12px;
+        background: $MAIN-GRADIENT;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        color: $LIGHT-COLOR;
+        align-self: center;
+        margin-right: 12px;
+    }
+
+    .passwordService, .passwordUsername, .passwordSecret {
+        display: flex;
+        flex-direction: column;
+
+        .label {
+            font-size: 11px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+    }
+
+    .passwordService {
+        flex: 1;
+        margin-right: 12px;
+
+        .serviceName {
+            margin-top: 10px;
+            font-size: 14px;
+            @include textOverflow(1);
+        }
+    }
+
+    .passwordUsername {
+        margin-right: 12px;
+        flex: 2;
+
+        .username {
+            margin-top: 10px;
+            font-size: 14px;
+            opacity: .6;
+            @include textOverflow(1);
+        }
+    }
+
+    .passwordSecret {
+        flex: 4;
+        max-width: 450px;
+        position: relative;
+
+        .passwordSecretPass {
+            all: unset;
+            background-color: $LIGHT-COLOR;
+            border-radius: 12px;
+            width: 100%;
+            min-width: 200px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            padding-left: 6px;
+            padding-right: 38px;
+            font-size: 13px;
+            box-sizing: border-box;
+            // pointer-events: none;
+        }
+
+        .copyPassword {
+            position: absolute;
+            bottom: calc(38px / 2);
+            right: 12px;
+            transform: translateY(50%);
+            cursor: pointer;
+        }
+    }
+
+    .options {
+        display: flex;
+        align-items: center;
+        margin-left: 24px;
+        position: relative;
+
+        img {
+            cursor: pointer;
+            margin-top: 32px;
+        }
+
+        .optionsModal {
+            @include useLowTransition;
+            @include useDropShadow;
+            cursor: default;
+
+            position: absolute;
+            bottom: 6px;
+            right: 32px;
+
+            width: 152px;
+            height: 112px;
+            background-color: $LIGHT-COLOR;
+            border-radius: 8px;
+            padding: 8px 4px;
+
+            visibility: hidden;
+            opacity: 0;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            &.active {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            button {
+                all: unset;
+                font-size: 12px;
+                padding: 6px 6px;
+                cursor: pointer;
+                border-radius: 4px;
+
+                &:last-child {
+                    color: $DANGER-COLOR;
+                }
+
+                &:hover {
+                    background-color: $MAIN-BACKGROUND;
+                }
+            }
+        }
+    }
+}

@@ -13,8 +13,7 @@ const App: React.FC = () => {
 
   const { isAuth } = useCheckAuth();
   const { isFetched, skipFetch } = useFetchGlobalData();
-  console.log(isAuth, isFetched, skipFetch);
-  console.log(isAuth === null || (isFetched && skipFetch))
+
   return (
     <>
       {isAuth === null || (isFetched && skipFetch) ? (

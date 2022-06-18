@@ -1,0 +1,19 @@
+@import '../../../styles/index.scss';
+
+.passwordListWrapper {
+    margin-bottom: $BLOCK-GAP;
+
+    .passwordListGroup {
+        margin-bottom: $BLOCK-GAP;
+
+        h5 {
+            font-size: 22px;
+        }
+    }
+
+    .passwordList {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}

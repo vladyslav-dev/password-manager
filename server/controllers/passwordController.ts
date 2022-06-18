@@ -48,8 +48,10 @@ export default {
     },
     deleteOne: async (req: Request, res: Response) => {
         try {
+            console.log('deleteOne')
+            console.log(req.params)
             await PasswordService.deleteOne(req.params.id);
-            res.status(200);
+            res.status(200).json({ message: 'Password deleted.' });
         } catch (err) {
             res.status(500).json({ message: `${err}` });
         }
