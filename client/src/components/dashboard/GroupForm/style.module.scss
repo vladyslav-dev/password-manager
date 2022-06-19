@@ -1,0 +1,16 @@
+@import '../../../styles/index.scss';
+
+.groupForm {
+    max-width: 320px;
+    padding: 32px 0;
+    margin: auto;
+
+    .groupFormTitle {
+        font-size: 17px;
+        text-align: center
+    }
+
+    .form {
+        @include useFormStyles;
+    }
+}

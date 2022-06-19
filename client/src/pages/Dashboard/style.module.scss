@@ -13,9 +13,8 @@
 
     .aside {
         @include useFlexColumn;
-        flex: 1;
         max-width: 286px;
-
+        min-width: 286px;
 
         .asideCard {
             &:not(:last-child) {
@@ -30,7 +29,14 @@
         flex: 1;
 
         .toolbar {
-            margin-bottom: $BLOCK-GAP;;
+            margin-bottom: $BLOCK-GAP;
+            background-color: $LIGHT-COLOR;
+            border-radius: 24px;
+            max-width: 220px;
+
+            & > div > div {
+                border: none;
+            }
         }
 
         .mainSection {

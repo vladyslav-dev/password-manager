@@ -1,13 +1,17 @@
 import React from 'react';
+import GroupForm from '../../components/dashboard/GroupForm';
 import styles from './style.module.scss';
 
-const NewGroup: React.FC = () => {
+const NewGroupPage: React.FC = () => {
 
     return (
         <main className={styles.newGroup}>
-            NewGroup
+            <GroupForm
+                type='create'
+                title='Create new group'
+            />
         </main>
     )
 }
 
-export default NewGroup;
+export default NewGroupPage;

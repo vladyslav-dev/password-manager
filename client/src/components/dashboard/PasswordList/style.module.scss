@@ -5,9 +5,44 @@
 
     .passwordListGroup {
         margin-bottom: $BLOCK-GAP;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        align-items: center;
+        padding: 10px 12px;
 
         h5 {
             font-size: 22px;
+            margin-right: auto;
+            position: relative;
+
+            &::after {
+                content: '';
+                display: block;
+                height: 3px;
+                max-width: 0;
+                border-radius: 2px;
+                position: absolute;
+                background-color: $DARK-COLOR;
+                bottom: -8px;
+                left: 0;
+                right: 0;
+                @include useLowTransition;
+            }
+        }
+
+        img {
+            @include useLowTransition;
+            opacity: .6;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 1;
+
+                & ~ h5::after {
+                    max-width: 100%;
+                }
+            }
         }
     }
 

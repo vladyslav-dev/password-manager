@@ -22,7 +22,7 @@ const EditPassword: React.FC = () => {
             .then(data => setPasswordData(data))
             .catch(err => console.log(err));
 
-    }, [id])
+    }, [])
 
     if (passwordData === null) {
         return null

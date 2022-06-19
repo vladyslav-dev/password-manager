@@ -45,7 +45,7 @@ export interface IPassword extends Document {
 }
 
 export interface IGroup extends Document {
-    readonly _id: string
+    _id: string
     title: string
     user: string
     _doc: object
@@ -59,6 +59,8 @@ export interface ICreateGroup {
     title: string
     userId: string
 }
+
+export interface IUpdateGroup extends Omit<IGroup, '_doc'> {}
 
 export interface ICreatePassword {
     passwordData: IPassword;

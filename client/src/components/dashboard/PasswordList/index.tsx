@@ -2,21 +2,31 @@ import React from 'react';
 import { IPassword } from '../../../types/password';
 import PasswordItem from './helpers/PasswordItem';
 import styles from './style.module.scss';
+import editSvg from '../../../images/icons/edit.svg';
+import { IGroup } from '../../../types/group';
+import { useNavigate } from 'react-router-dom';
 
 interface IPasswordListProps {
-    groupTitle: string;
+    group: IGroup;
     passwordList: IPassword[];
 }
 
 const PasswordList: React.FC<IPasswordListProps> = ({
-    groupTitle,
+    group,
     passwordList
 }) => {
+
+    const navigate = useNavigate();
 
     return (
         <div className={styles.passwordListWrapper}>
             <div className={styles.passwordListGroup}>
-                <h5>{groupTitle}</h5>
+                {group._id && <img
+                    src={editSvg}
+                    alt="edit"
+                    onClick={() => navigate(`/dashboard/edit-group/${group._id}`)}
+                />}
+                <h5>{group.title}</h5>
             </div>
             <ul className={styles.passwordList}>
                 {passwordList.map(password => (

@@ -1,3 +1,4 @@
+import { IUpdateGroup } from './../types/index';
 import GroupModel from '../models/groupModel';
 import { ICreateGroup } from '../types';
 
@@ -14,8 +15,9 @@ export default {
         const newGroup = await GroupModel.create({ title, user: userId });
         return newGroup;
     },
-    updateOne: async (groupTitle: string, userId: string) => {
-
+    updateOne: async (data: IUpdateGroup) => {
+        const updatedGroup = await GroupModel.findOneAndUpdate({ _id: data._id}, { title: data.title });
+        return updatedGroup;
     },
     deleteOne: async (id: string) => {
 

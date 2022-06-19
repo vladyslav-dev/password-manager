@@ -1,21 +1,25 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import FirstPassword from '../../components/dashboard/FirstPassword';
 import InfoCard from '../../components/dashboard/InfoCard';
 import PasswordList from '../../components/dashboard/PasswordList';
+import Select from '../../components/dashboard/Select';
 import { RootState } from '../../store';
+import { IGroup } from '../../types/group';
 import { IPassword } from '../../types/password';
+import { transformGroupsToFilter } from '../../utils/select';
 import styles from './style.module.scss';
 
 interface IDataView {
     [key: string]: {
-        groupTitle: string;
+        group: IGroup;
         passwordList: IPassword[];
     }
 }
 
-
 interface IDashboardProps {}
+
+const FILTER_ALL = 'All';
 
 const Dashboard: React.FC<IDashboardProps> = () => {
 
@@ -26,15 +30,18 @@ const Dashboard: React.FC<IDashboardProps> = () => {
         totalGroups
     } = useSelector((state: RootState) => state.passwordReducer);
 
+    const [filterGroups, setFilterGroups] = useState<string>(FILTER_ALL);
+
     const passwordData = useMemo(() => Object.values(passwordCollection), [passwordCollection]);
 
     const renderDataView = useMemo(() => {
 
         const dataView: IDataView = Object.values(passwordCollection).reduce((acc: IDataView, password: IPassword) => {
-            const groupTitle = password.group ? groupsCollection[password.group]?.title : 'All';
+            const group: IGroup | null = password.group ? groupsCollection[password.group]: null;
+            const groupTitle = group?.title || FILTER_ALL;
 
             acc[groupTitle] = {
-                groupTitle,
+                group: group ? groupsCollection[group._id] : { _id: '', title: FILTER_ALL, user: '' },
                 passwordList: acc[groupTitle] ? [...acc[groupTitle]['passwordList'], password] : [password],
             }
 
@@ -45,10 +52,15 @@ const Dashboard: React.FC<IDashboardProps> = () => {
 
     }, [passwordCollection, groupsCollection])
 
+    const selectOptions = useMemo(() => {
+        return transformGroupsToFilter(Object.keys(renderDataView), filterGroups);
+    }, [renderDataView, filterGroups])
+
+    const selectHandler = (event: React.MouseEvent) => {
+        const { id } = event.target as HTMLDivElement;
+        setFilterGroups(id)
+    }
     console.log(renderDataView)
-
-    const sort: any  = 'All'
-
     return (
         <div className={styles.dashboard}>
             <aside className={styles.aside}>
@@ -69,25 +81,30 @@ const Dashboard: React.FC<IDashboardProps> = () => {
             </aside>
             <main className={styles.main}>
                 <div className={styles.toolbar}>
-                    toolbar
+                    <Select
+                        modalPosition='bottom'
+                        selectedOption={filterGroups}
+                        options={selectOptions}
+                        changeHandler={selectHandler}
+                    />
                 </div>
                 <div className={styles.mainSection}>
-                    {passwordData.length ? (
+                    {(!Object.keys(passwordCollection).length && !Object.keys(groupsCollection).length) ? null : passwordData.length ? (
                         <>
-                            {sort === 'All' ? (
+                            {filterGroups === FILTER_ALL ? (
                                 <>
-                                    {Object.values(renderDataView).map(({ groupTitle, passwordList }) => (
+                                    {Object.values(renderDataView).map(({ group, passwordList }) => (
                                         <PasswordList
-                                            key={groupTitle}
-                                            groupTitle={groupTitle === 'All' ? 'No group' : groupTitle}
+                                            key={group.title}
+                                            group={group}
                                             passwordList={passwordList}
                                         />
                                     ))}
                             </>
                             ) : (
                                 <PasswordList
-                                    groupTitle={renderDataView[sort]['groupTitle']}
-                                    passwordList={renderDataView[sort].passwordList}
+                                    group={renderDataView[filterGroups]['group']}
+                                    passwordList={renderDataView[filterGroups].passwordList}
                                 />
                             )}
                         </>

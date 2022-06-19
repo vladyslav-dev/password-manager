@@ -47,7 +47,8 @@
 
     .passwordUsername {
         margin-right: 12px;
-        flex: 2;
+        flex: 3;
+        max-width: 212px;
 
         .username {
             margin-top: 10px;
@@ -59,7 +60,7 @@
 
     .passwordSecret {
         flex: 4;
-        max-width: 450px;
+        max-width: 205px;
         position: relative;
 
         .passwordSecretPass {

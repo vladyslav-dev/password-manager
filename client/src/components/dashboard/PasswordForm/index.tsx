@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PasswordService from '../../../services/PasswordService';
@@ -6,9 +6,10 @@ import { RootState } from '../../../store';
 import { setPasswordData } from '../../../store/slices/password';
 import { IGroup } from '../../../types/group';
 import { IPassword } from '../../../types/password';
+import { transformGroupsToOptions } from '../../../utils/select';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
-import Select from '../Select';
+import Select, { IOption } from '../Select';
 import styles from './style.module.scss';
 
 type FormType = 'create' | 'update';
@@ -38,13 +39,21 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
 
     const { groupsCollection } = useSelector((state: RootState) => state.passwordReducer);
 
-
     const [formData, setFormData] = useState<IPasswordFormState>({
         service: passwordData?.service || '',
         username: passwordData?.username || '',
         password: passwordData?.password || '',
         group: passwordData?.group ? groupsCollection[passwordData?.group] : null
     })
+
+    const isValid = useMemo(() => {
+        return !!formData.service.trim() && !!formData.username.trim() && !!formData.password.trim();
+    }, [formData]);
+
+    const transformedToOption: IOption[] = useMemo(() => {
+        return transformGroupsToOptions(groupsCollection, formData.group?._id!);
+    }, [groupsCollection, formData]);
+
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -128,14 +137,17 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
                         </div>
                         <div className={styles.formItem}>
                             <Select
-                                selectedOption={formData.group}
-                                options={Object.values(groupsCollection)}
+                                modalPosition='top'
+                                selectedOption={formData.group?.title || 'No group'}
+                                options={transformedToOption}
                                 changeHandler={selectHandler}
+                                showAddGroup={true}
                             />
                         </div>
                         <div className={styles.formItem}>
                             <Button
                                 clickHandler={sumbitHandler}
+                                disabled={!isValid}
                                 title={type === 'create' ? 'ADD NEW PASSWORD' : 'UPDATE PASSWORD'}
                             />
                         </div>

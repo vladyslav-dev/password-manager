@@ -2,16 +2,15 @@ export interface INewGroup {
     title: string;
 }
 
-export interface IUpdateGroup {
-    title: string;
-    userId: string;
-}
+
 
 export interface IGroup {
     _id: string;
     title: string;
     user: string;
 }
+
+export interface IUpdateGroup extends IGroup {}
 
 export type TGroupCollection ={ [key: string]: IGroup }
 

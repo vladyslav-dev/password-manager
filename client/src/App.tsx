@@ -9,6 +9,8 @@ import NewPassword from './pages/NewPassword';
 import useCheckAuth from './hooks/useCheckAuth';
 import useFetchGlobalData from './hooks/useFetchGlobalData';
 import EditPassword from './pages/EditPassword';
+import NewGroupPage from './pages/NewGroup';
+import EditGroup from './pages/EditGroup';
 
 const App: React.FC = () => {
 
@@ -25,7 +27,8 @@ const App: React.FC = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/new-password" element={<NewPassword />} />
             <Route path="/dashboard/edit-password/:id" element={<EditPassword />} />
-            <Route path="/dashboard/new-group" element={<Dashboard />} />
+            <Route path="/dashboard/new-group" element={<NewGroupPage />} />
+            <Route path="/dashboard/edit-group/:id" element={<EditGroup />} />
             <Route
               path="*"
               element={<Navigate to="/dashboard" replace />}
