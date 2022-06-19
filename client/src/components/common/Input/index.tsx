@@ -18,7 +18,7 @@ const Input: React.FC<IInputProps> = ({
     const [inputType, setInputType] = useState(type);
 
     const changePasswordVisibility = () => {
-        inputType === 'password' ? setInputType('text') : setInputType('password')
+        inputType === 'password' ? setInputType('text') : setInputType('password');
     }
 
     return (
@@ -28,7 +28,7 @@ const Input: React.FC<IInputProps> = ({
                 name={label}
                 value={value}
                 onChange={handler}
-                autoComplete="off"
+                autoComplete='off'
                 type={inputType}
                 placeholder={' '}
                 {...props}
@@ -39,7 +39,7 @@ const Input: React.FC<IInputProps> = ({
                     className={`${styles.eye} ${inputType !== 'password' ? styles.hide : ''}`}
                     onClick={changePasswordVisibility}
                 >
-                    <img src={eye} alt="eye" />
+                    <img src={eye} alt='eye' />
                 </button>
             )}
 

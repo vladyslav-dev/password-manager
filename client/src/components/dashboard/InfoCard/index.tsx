@@ -15,9 +15,9 @@ const InfoCard: React.FC<IInfoCardProps> = ({
     linkTo
 }) => {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const navigateTo = () => navigate(linkTo)
+    const navigateTo = () => navigate(linkTo);
 
     return (
         <div className={styles.card}>

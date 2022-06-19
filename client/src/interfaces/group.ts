@@ -2,8 +2,6 @@ export interface INewGroup {
     title: string;
 }
 
-
-
 export interface IGroup {
     _id: string;
     title: string;

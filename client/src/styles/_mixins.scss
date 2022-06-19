@@ -56,15 +56,8 @@
 // ------------ Media ------------
 
 
-
 @mixin lg {
     @media (max-width: 992px) {
-        @content;
-    }
-}
-
-@mixin md {
-    @media (max-width: 768px) {
         @content;
     }
 }

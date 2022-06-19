@@ -20,6 +20,7 @@ export default {
         return updatedGroup;
     },
     deleteOne: async (id: string) => {
-
+        const deletedGroup = await GroupModel.findByIdAndDelete(id);
+        return deletedGroup;
     }
 }

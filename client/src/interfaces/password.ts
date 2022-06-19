@@ -1,20 +1,20 @@
 import { TGroupCollection } from './group';
 export interface IPassword {
-    _id: string
-    user: string
-    service: string
-    username: string
-    password: string
-    group?: string | null
+    _id: string;
+    user: string;
+    service: string;
+    username: string;
+    password: string;
+    group?: string | null;
 }
 
 export type TPasswordCollection = { [key: string]: IPassword }
 export interface IPasswordState {
-    passwordCollection: TPasswordCollection
-    groupsCollection: TGroupCollection
-    totalPasswords: number
-    totalGroups: number
-    isFetched: boolean
+    passwordCollection: TPasswordCollection;
+    groupsCollection: TGroupCollection;
+    totalPasswords: number;
+    totalGroups: number;
+    isFetched: boolean;
 }
 
 export interface INewPassword extends Omit<IPassword, '_id' | 'user'> {}

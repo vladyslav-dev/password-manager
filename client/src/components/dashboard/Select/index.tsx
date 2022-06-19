@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import useOnClickOutside from '../../../hooks/useOnclickOutside';
-import { IGroup } from '../../../interfaces/group';
 import ToggleArrow from '../../icons/ToggleArrow';
 import NewGroup from './helpers/NewGroup';
 import styles from './style.module.scss';
@@ -36,7 +35,7 @@ const Select: React.FC<ISelectProps> = ({
     const changeOptionHandler = (event: React.MouseEvent) => {
         setIsOptionsOpen(false);
         changeHandler(event)
-    }
+    };
 
     return (
         <div className={`${styles.selectWrapper} ${isOptionsOpen ? styles.active : ''}`}>

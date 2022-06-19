@@ -1,7 +1,7 @@
 import { IPassword } from '../../../../server/interfaces/index';
 import { IGroup } from '../../interfaces/group';
 import { IPasswordState } from '../../interfaces/password';
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 
 const initialState: IPasswordState = {
@@ -10,7 +10,7 @@ const initialState: IPasswordState = {
     totalPasswords: 0,
     totalGroups: 0,
     isFetched: false
-}
+};
 
 const passwordSlice = createSlice({
     name: 'password',
@@ -21,7 +21,7 @@ const passwordSlice = createSlice({
                 return {
                     [password._id]: password
                 }
-            }))
+            }));
             state.totalPasswords = action.payload.length;
             state.isFetched = true;
         },
@@ -30,7 +30,7 @@ const passwordSlice = createSlice({
                 return {
                     [group._id]: group
                 }
-            }))
+            }));
             state.totalGroups = action.payload.length;
         },
     }

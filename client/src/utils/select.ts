@@ -1,5 +1,5 @@
 import { TGroupCollection } from '../interfaces/group';
-import { IOption } from "../components/dashboard/Select"
+import { IOption } from '../components/dashboard/Select';
 
 export const transformGroupsToOptions = (groupsCollection: TGroupCollection, currentId: string) => (
     Object.values(groupsCollection).reduce((acc: IOption[], group) => {
@@ -9,9 +9,9 @@ export const transformGroupsToOptions = (groupsCollection: TGroupCollection, cur
                 text: group.title
             })
         }
-        return acc
+        return acc;
     }, [])
-)
+);
 
 export const transformGroupsToFilter = (groupTitles: string[], currentTitle: string) => (
     groupTitles.reduce((acc: IOption[], groupTitle: string) => {
@@ -21,6 +21,6 @@ export const transformGroupsToFilter = (groupTitles: string[], currentTitle: str
                 text: groupTitle
             })
         }
-        return acc
+        return acc;
     }, [])
-)
+);

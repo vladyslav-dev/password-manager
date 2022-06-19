@@ -34,7 +34,6 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
 }) => {
 
     const dispatch = useDispatch();
-
     const navigate = useNavigate();
 
     const { groupsCollection } = useSelector((state: RootState) => state.passwordReducer);
@@ -44,7 +43,7 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
         username: passwordData?.username || '',
         password: passwordData?.password || '',
         group: passwordData?.group ? groupsCollection[passwordData?.group] : null
-    })
+    });
 
     const isValid = useMemo(() => {
         return !!formData.service.trim() && !!formData.username.trim() && !!formData.password.trim();
@@ -57,12 +56,12 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        setFormData({...formData, [name]: value})
+        setFormData({...formData, [name]: value});
     }
 
     const selectHandler = (event: React.MouseEvent) => {
         const { id } = event.target as HTMLDivElement;
-        setFormData({...formData, group: groupsCollection[id]})
+        setFormData({...formData, group: groupsCollection[id]});
     }
 
     const sumbitHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -103,13 +102,13 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
         <div className={styles.passwordForm}>
             <div className={styles.passwordFormContainer}>
                 <h2 className={styles.passwordFormTitle}>{title}</h2>
-                <form action="#" className={styles.form} onSubmit={sumbitHandler}>
+                <form action='#' className={styles.form} onSubmit={sumbitHandler}>
                     <div className={styles.formContainer}>
                         <div className={styles.formItem}>
                             <Input
                                 type={'text'}
-                                label="Service"
-                                name="service"
+                                label='Service'
+                                name='service'
                                 value={formData.service}
                                 handler={changeHandler}
                                 style={{ borderColor: '#000000' }}
@@ -118,8 +117,8 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
                         <div className={styles.formItem}>
                             <Input
                                 type={'text'}
-                                label="Username"
-                                name="username"
+                                label='Username'
+                                name='username'
                                 value={formData.username}
                                 handler={changeHandler}
                                 style={{ borderColor: '#000000' }}
@@ -128,8 +127,8 @@ const PasswordForm: React.FC<IPasswordFormProps> = ({
                         <div className={styles.formItem}>
                             <Input
                                 type={'text'}
-                                label="Password"
-                                name="password"
+                                label='Password'
+                                name='password'
                                 value={formData.password}
                                 handler={changeHandler}
                                 style={{ borderColor: '#000000' }}

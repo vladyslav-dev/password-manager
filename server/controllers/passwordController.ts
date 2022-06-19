@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 import PasswordService from '../services/passwordService';
-import { IRequestAuth } from "../interfaces";
+import { IRequestAuth } from '../interfaces';
 
 
 export default {
-    getAll: async (req: IRequestAuth, res: Response) => {  // GET ALL BY USER ID  - GET /api/groups
+    getAll: async (req: IRequestAuth, res: Response) => {
         try {
             if (req?.user?._id) {
                 const passwords = await PasswordService.getAll(req?.user?._id);

@@ -10,7 +10,7 @@ const FirstPassword: React.FC = () => {
 
     return (
         <div className={styles.wrapper}>
-            <img src={firstPasswordVector} alt="Vector" />
+            <img src={firstPasswordVector} alt='Vector' />
             <h3 className={styles.subtitle}>Add your first password</h3>
             <Button
                 clickHandler={() => navigate('/dashboard/new-password')}

@@ -1,10 +1,10 @@
 import { IGroup } from '../interfaces/index';
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const groupSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: [true, "Please add title"]
+        required: [true, 'Please add title']
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -12,4 +12,4 @@ const groupSchema = new mongoose.Schema({
     }
 }, {collection: 'group'});
 
-export default mongoose.model<IGroup>('group', groupSchema)
+export default mongoose.model<IGroup>('group', groupSchema);

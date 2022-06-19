@@ -42,8 +42,8 @@ const Form: React.FC<IFormProps> = ({
         setFormData((prevState => ({
             ...prevState,
             [event.target.name]: event.target.value,
-        })))
-    }
+        })));
+    };
 
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -53,12 +53,12 @@ const Form: React.FC<IFormProps> = ({
                 .then(data => {
                     localStorage.setItem('password-manager:accessToken', data.accessToken);
 
-                    dispatch(setAuth(true))
-                    dispatch(setUser(data.user))
+                    dispatch(setAuth(true));
+                    dispatch(setUser(data.user));
                 })
                 .catch(err => {
                     setAlertMessage(err?.response?.data?.message || 'Network error');
-                    setTimeout(() => setAlertMessage(''), 1800);
+                    setTimeout(() => setAlertMessage(''), 2800);
                 })
         }
 
@@ -67,12 +67,14 @@ const Form: React.FC<IFormProps> = ({
                 .then(data => {
                     localStorage.setItem('password-manager:accessToken', data.accessToken);
 
-                    dispatch(setAuth(true))
-                    dispatch(setUser(data.user))
+                    dispatch(setAuth(true));
+                    dispatch(setUser(data.user));
                 })
                 .catch(err => {
+                    console.log(err)
+
                     setAlertMessage(err?.response?.data?.message || 'Network error');
-                    setTimeout(() => setAlertMessage(''), 1800);
+                    setTimeout(() => setAlertMessage(''), 2800);
                 })
         }
     }
@@ -81,17 +83,17 @@ const Form: React.FC<IFormProps> = ({
         <div className={styles.formBox}>
             <div className={styles.formHead}>
                 <div className={styles.formLogo}>
-                    <img src={logo} alt="Logo" />
+                    <img src={logo} alt='Logo' />
                 </div>
                 <h1>{title}</h1>
             </div>
-            <form className={styles.form} action="#" onSubmit={submitHandler}>
+            <form className={styles.form} action='#' onSubmit={submitHandler}>
                 <div className={styles.formContainer}>
                     <div className={styles.formItem}>
                         <Input
                             type={'text'}
-                            label="Login"
-                            name="login"
+                            label='Login'
+                            name='login'
                             value={formData.login}
                             handler={changeHandler}
                         />
@@ -99,8 +101,8 @@ const Form: React.FC<IFormProps> = ({
                     <div className={styles.formItem}>
                         <Input
                             type={'password'}
-                            label="Password"
-                            name="password"
+                            label='Password'
+                            name='password'
                             value={formData.password}
                             handler={changeHandler}
                         />
@@ -109,7 +111,7 @@ const Form: React.FC<IFormProps> = ({
                         <Button
                             clickHandler={submitHandler}
                             title={title}
-                            type="submit"
+                            type='submit'
                             disabled={!isValid}
                         />
                     </div>

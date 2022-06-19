@@ -15,7 +15,7 @@ const EditPassword: React.FC = () => {
 
         if (!id) {
             navigate('/dashboard');
-            return
+            return;
         }
 
         PasswordService.getOne(id)
@@ -25,7 +25,7 @@ const EditPassword: React.FC = () => {
     }, [])
 
     if (passwordData === null) {
-        return null
+        return null;
     }
 
     return (

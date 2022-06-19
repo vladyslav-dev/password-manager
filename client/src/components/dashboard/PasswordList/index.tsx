@@ -23,7 +23,7 @@ const PasswordList: React.FC<IPasswordListProps> = ({
             <div className={styles.passwordListGroup}>
                 {group._id && <img
                     src={editSvg}
-                    alt="edit"
+                    alt='edit'
                     onClick={() => navigate(`/dashboard/edit-group/${group._id}`)}
                 />}
                 <h5>{group.title}</h5>

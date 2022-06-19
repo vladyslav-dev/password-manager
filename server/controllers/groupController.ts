@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 import GroupService from '../services/groupService';
-import { IRequestAuth } from "../interfaces";
+import { IRequestAuth } from '../interfaces';
 
 
 export default {

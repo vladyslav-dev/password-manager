@@ -17,11 +17,9 @@ interface IDataView {
     }
 }
 
-interface IDashboardProps {}
-
 const FILTER_ALL = 'All';
 
-const Dashboard: React.FC<IDashboardProps> = () => {
+const Dashboard: React.FC = () => {
 
     const {
         passwordCollection,
@@ -43,9 +41,9 @@ const Dashboard: React.FC<IDashboardProps> = () => {
             acc[groupTitle] = {
                 group: group ? groupsCollection[group._id] : { _id: '', title: FILTER_ALL, user: '' },
                 passwordList: acc[groupTitle] ? [...acc[groupTitle]['passwordList'], password] : [password],
-            }
+            };
 
-            return acc
+            return acc;
         }, {})
 
         return Object.assign({}, dataView);
@@ -54,12 +52,12 @@ const Dashboard: React.FC<IDashboardProps> = () => {
 
     const selectOptions = useMemo(() => {
         return transformGroupsToFilter(Object.keys(renderDataView), filterGroups);
-    }, [renderDataView, filterGroups])
+    }, [renderDataView, filterGroups]);
 
     const selectHandler = (event: React.MouseEvent) => {
         const { id } = event.target as HTMLDivElement;
-        setFilterGroups(id)
-    }
+        setFilterGroups(id);
+    };
 
     return (
         <div className={styles.dashboard}>

@@ -35,7 +35,7 @@ const GroupForm: React.FC<IGroupFormProps> = ({
             .then(() => {
                 GroupService.getAll()
                     .then((groups: IGroup[]) => {
-                        dispatch(setGroups(groups))
+                        dispatch(setGroups(groups));
                     })
                     .catch(err => console.log(err))
             })
@@ -52,7 +52,7 @@ const GroupForm: React.FC<IGroupFormProps> = ({
             .then(() => {
                 GroupService.getAll()
                     .then((groups: IGroup[]) => {
-                        dispatch(setGroups(groups))
+                        dispatch(setGroups(groups));
                     })
                     .catch(err => console.log(err))
             })
@@ -60,21 +60,19 @@ const GroupForm: React.FC<IGroupFormProps> = ({
             .finally(() => navigate('/dashboard'))
         }
 
-
-
         setGroupValue('');
     }
 
     return (
         <div className={styles.groupForm}>
             <h2 className={styles.groupFormTitle}>{title}</h2>
-            <form action="#" className={styles.form} onSubmit={sumbitHandler}>
+            <form action='#' className={styles.form} onSubmit={sumbitHandler}>
                 <div className={styles.formContainer}>
                     <div className={styles.formItem}>
                         <Input
                             type={'text'}
-                            label="New group name"
-                            name="username"
+                            label='New group name'
+                            name='username'
                             value={groupValue}
                             handler={(event) => setGroupValue(event.target.value)}
                             style={{ borderColor: '#000000' }}

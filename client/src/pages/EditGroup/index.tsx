@@ -25,7 +25,7 @@ const EditGroup: React.FC = () => {
     }, [])
 
     if (groupData === null) {
-        return null
+        return null;
     }
 
     return (

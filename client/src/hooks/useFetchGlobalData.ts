@@ -15,14 +15,13 @@ export default function useFetchGlobalData() {
     const [isFetched, setIsFetched] = useState<boolean>(false);
     const [skipFetch, setSkipFetch] = useState<boolean>(false);
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     useEffect(() => {
 
         if (!isAuth) {
-            setIsFetched(false)
-            setSkipFetch(true)
-
+            setIsFetched(false);
+            setSkipFetch(true);
             return
         }
 
@@ -36,12 +35,12 @@ export default function useFetchGlobalData() {
                 .then((data: IPassword[]) => dispatch(setPasswordData(data)))
                 .catch(err => console.log(err))
 
-            setIsFetched(true)
+            setIsFetched(true);
 
-            setSkipFetch(false)
+            setSkipFetch(false);
         }
 
     }, [isAuth])
 
-    return { isFetched, skipFetch }
+    return { isFetched, skipFetch };
 }

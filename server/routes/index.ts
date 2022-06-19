@@ -1,6 +1,6 @@
-import authRouter from "./authRouter";
-import groupRouter from "./groupRouter";
-import passwordRouter from "./passwordRouter";
+import authRouter from './authRouter';
+import groupRouter from './groupRouter';
+import passwordRouter from './passwordRouter';
 
 
 export default [

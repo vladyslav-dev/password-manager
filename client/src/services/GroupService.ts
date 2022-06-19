@@ -1,5 +1,5 @@
-import { IGroupService } from "../interfaces/group";
-import $api from "../api/index";
+import { IGroupService } from '../interfaces/group';
+import $api from '../api/index';
 
 const GroupService: IGroupService = {
     getAll: async () => {
@@ -11,7 +11,7 @@ const GroupService: IGroupService = {
         return response?.data;
     },
     createOne: async ({ title }) => {
-        return $api.post(`/group`, { title })
+        return $api.post(`/group`, { title });
     },
     updateOne: async (data) => {
         const response = await $api.put(`/group`, data);

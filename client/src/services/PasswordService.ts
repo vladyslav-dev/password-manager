@@ -1,5 +1,5 @@
-import { IPasswordService } from "../interfaces/password";
-import $api from "../api/index";
+import { IPasswordService } from '../interfaces/password';
+import $api from '../api/index';
 
 const PasswordService: IPasswordService = {
     getAll: async () => {
@@ -11,7 +11,7 @@ const PasswordService: IPasswordService = {
         return response?.data;
     },
     createOne: async (passwordData) => {
-        return $api.post(`/password`, passwordData)
+        return $api.post(`/password`, passwordData);
     },
     updateOne: async (passwordData) => {
         const response = await $api.put(`/password`, passwordData);

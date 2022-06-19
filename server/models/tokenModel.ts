@@ -1,5 +1,5 @@
-import { IToken } from '../interfaces/index'
-import mongoose from 'mongoose'
+import { IToken } from '../interfaces/index';
+import mongoose from 'mongoose';
 
 const tokenSchema = new mongoose.Schema({
     user: {
@@ -12,4 +12,4 @@ const tokenSchema = new mongoose.Schema({
     }
 }, {collection: 'token'});
 
-export default mongoose.model<IToken>('token', tokenSchema)
+export default mongoose.model<IToken>('token', tokenSchema);

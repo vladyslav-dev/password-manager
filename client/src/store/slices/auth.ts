@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { IAuthState } from "../../interfaces/auth";
+import { createSlice } from '@reduxjs/toolkit';
+import { IAuthState } from '../../interfaces/auth';
 
 const initialState: IAuthState = {
     user: null,
     isAuth: null,
-}
+};
 
 const authSlice = createSlice({
     name: 'auth',

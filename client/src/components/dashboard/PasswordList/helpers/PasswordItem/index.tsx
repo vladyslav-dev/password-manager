@@ -20,7 +20,6 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
 }) => {
 
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
 
     const [alertMessage, setAlertMessage] = useState<string>('');
@@ -32,7 +31,6 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
     const [inputType, setInputType] = useState<string>('password');
 
     useOnClickOutside(() => setIsOptionsOpen(false), optionsRef, optionsModalRef);
-
 
     const copyToClipboard = () => {
         if (!navigator.clipboard) {
@@ -54,7 +52,7 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
 
     const handleInputType = () => {
         setInputType(inputType === 'password' ? 'text' : 'password');
-        setIsOptionsOpen(false)
+        setIsOptionsOpen(false);
     }
 
     const navigateToEditPage = () => {
@@ -64,10 +62,10 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
     const deleteCurrentItem = () => {
         PasswordService.deleteOne(passwordData._id)
             .then(() => {
-                console.log('Password deleted')
+                console.log('Password deleted');
             })
-            .catch((err) => {
-                console.log('Error deleting password')
+            .catch(() => {
+                console.log('Error deleting password');
             })
             .finally(() => {
                 PasswordService.getAll()
@@ -100,7 +98,7 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
                     />
                     <img
                         src={copySvg}
-                        alt="copy"
+                        alt='copy'
                         onClick={copyToClipboard}
                         className={styles.copyPassword}
                     />
@@ -111,7 +109,7 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
                     ref={optionsRef}
                     onClick={() => setIsOptionsOpen(!isOptionsOpen)}
                     src={optionsSvg}
-                    alt="options"
+                    alt='options'
                 />
                 <div
                     className={`${styles.optionsModal} ${isOptionsOpen ? styles.active : ''}`}

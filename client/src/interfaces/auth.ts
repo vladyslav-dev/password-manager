@@ -1,4 +1,4 @@
-import { IRegisterUser, IUser } from "./user";
+import { IRegisterUser, IUser } from './user';
 
 export interface IAuthState {
     user: IUser | null;
@@ -13,8 +13,8 @@ export interface IAuthService {
 }
 
 export interface ITokenGroup {
-    accessToken: string,
-    refreshToken: string
+    accessToken: string;
+    refreshToken: string;
 }
 
 export interface IAuthResponse extends ITokenGroup {

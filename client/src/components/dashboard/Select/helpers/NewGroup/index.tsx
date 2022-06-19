@@ -7,15 +7,11 @@ import Button from '../../../../common/Button';
 import Input from '../../../../common/Input';
 import styles from './style.module.scss';
 
-interface INewGroupProps {
-
-}
-
-const NewGroup: React.FC<INewGroupProps> = () => {
+const NewGroup: React.FC = () => {
 
     const dispatch = useDispatch();
 
-    const [newGroupValue, setNewGroupValue] = useState<string>('')
+    const [newGroupValue, setNewGroupValue] = useState<string>('');
 
     const createNewGroup = (event: React.MouseEvent) => {
         event.preventDefault();
@@ -24,7 +20,7 @@ const NewGroup: React.FC<INewGroupProps> = () => {
             .then(() => {
                 GroupService.getAll()
                     .then((groups: IGroup[]) => {
-                        dispatch(setGroups(groups))
+                        dispatch(setGroups(groups));
                     })
                     .catch(err => console.log(err))
             })
@@ -39,8 +35,8 @@ const NewGroup: React.FC<INewGroupProps> = () => {
                 <div className={styles.newGroupInput}>
                     <Input
                         type={'text'}
-                        label="New group name"
-                        name="username"
+                        label='New group name'
+                        name='username'
                         value={newGroupValue}
                         handler={(event) => setNewGroupValue(event.target.value)}
                     />

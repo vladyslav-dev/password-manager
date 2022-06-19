@@ -12,8 +12,8 @@ import { useNavigate } from 'react-router-dom';
 const Navbar: React.FC = () => {
 
     const { user } = useSelector((state: RootState) => state.authReducer);
-    const dispatch = useDispatch();
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const buttonRef = useRef<HTMLButtonElement>(null);
@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
     const optionsHandler = () => setIsOptionsOpen(!isOptionsOpen);
 
     const logout = () => {
-        AuthService.logout()
+        AuthService.logout();
 
         localStorage.removeItem('password-manager:accessToken');
 
@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
             <div className={styles.dashboardContainer}>
                 <div className={styles.navbarContainer}>
                     <div className={styles.logo} onClick={() => navigate('/dashboard')}>
-                        <img src={logo} alt="Logo" />
+                        <img src={logo} alt='Logo' />
                         <span>Dashboard</span>
                     </div>
                     <button className={`${styles.logout} ${isOptionsOpen ? styles.active : ''}`} ref={buttonRef} onClick={optionsHandler}>
