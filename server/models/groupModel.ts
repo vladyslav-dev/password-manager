@@ -1,4 +1,4 @@
-import { IGroup } from './../types/index';
+import { IGroup } from '../interfaces/index';
 import mongoose from 'mongoose'
 
 const groupSchema = new mongoose.Schema({

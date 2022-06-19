@@ -1,6 +1,6 @@
-import { IToken, IUser, IUserData, IUserDto } from './../types/index';
+import { IToken, IUser, IUserData, IUserDto } from '../interfaces/index';
 import UserModel from '../models/userModel'
-import { IRegisterUser } from '../types'
+import { IRegisterUser } from '../interfaces'
 import bcrypt from 'bcrypt'
 import TokenService from '../services/tokenService'
 import UserDto from '../dtos/UserDto';

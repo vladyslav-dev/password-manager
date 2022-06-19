@@ -1,4 +1,4 @@
-import { IAuthService } from "../types/auth";
+import { IAuthService } from "../interfaces/auth";
 import $api from "../api/index";
 
 const AuthService: IAuthService = {

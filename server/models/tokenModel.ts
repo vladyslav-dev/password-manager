@@ -1,4 +1,4 @@
-import { IToken } from './../types/index'
+import { IToken } from '../interfaces/index'
 import mongoose from 'mongoose'
 
 const tokenSchema = new mongoose.Schema({

@@ -14,6 +14,7 @@ export interface IPasswordState {
     groupsCollection: TGroupCollection
     totalPasswords: number
     totalGroups: number
+    isFetched: boolean
 }
 
 export interface INewPassword extends Omit<IPassword, '_id' | 'user'> {}

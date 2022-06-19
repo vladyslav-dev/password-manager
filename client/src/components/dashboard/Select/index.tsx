@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import useOnClickOutside from '../../../hooks/useOnclickOutside';
-import { IGroup } from '../../../types/group';
+import { IGroup } from '../../../interfaces/group';
 import ToggleArrow from '../../icons/ToggleArrow';
 import NewGroup from './helpers/NewGroup';
 import styles from './style.module.scss';

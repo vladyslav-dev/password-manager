@@ -1,5 +1,5 @@
 import React from 'react';
-import { IIcon } from '../../types/icons';
+import { IIcon } from '../../interfaces/icons';
 
 const ToggleArrow: React.FC<IIcon> = ({ color }) => (
     <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">

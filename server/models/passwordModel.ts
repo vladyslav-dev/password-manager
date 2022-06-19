@@ -1,4 +1,4 @@
-import { IPassword } from './../types/index';
+import { IPassword } from '../interfaces/index';
 import mongoose from 'mongoose'
 
 const passwordSchema = new mongoose.Schema({

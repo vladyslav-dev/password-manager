@@ -1,4 +1,4 @@
-import { IUser } from "../types";
+import { IUser } from "../interfaces";
 
 class UserDto {
     _id;

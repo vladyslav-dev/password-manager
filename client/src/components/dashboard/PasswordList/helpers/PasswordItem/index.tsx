@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { IPassword } from '../../../../../types/password';
+import { IPassword } from '../../../../../interfaces/password';
 import styles from './style.module.scss';
 import optionsSvg from '../../../../../images/icons/options.svg';
 import copySvg from '../../../../../images/icons/copy.svg';
@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import PasswordService from '../../../../../services/PasswordService';
 import { useDispatch } from 'react-redux';
 import { setPasswordData } from '../../../../../store/slices/password';
+import Alert from '../../../../common/Alert';
 
 
 interface IPasswordItemProps {
@@ -21,6 +22,8 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
+
+    const [alertMessage, setAlertMessage] = useState<string>('');
 
     const optionsRef = useRef<HTMLImageElement>(null);
     const optionsModalRef = useRef<HTMLDivElement>(null);
@@ -37,8 +40,16 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
         }
 
         navigator.clipboard.writeText(passwordData.password)
-            .then(() => alert('Copied to clipboard'))
-            .catch((err: any) => alert('Something went wrong while copying'));
+            .then(() => {
+                setAlertMessage('Password copied to clipboard');
+
+                setTimeout(() => setAlertMessage(''), 1800);
+            })
+            .catch((err: any) => {
+                setAlertMessage('Error copying password to clipboard');
+
+                setTimeout(() => setAlertMessage(''), 1800);
+            });
     }
 
     const handleInputType = () => {
@@ -52,8 +63,12 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
 
     const deleteCurrentItem = () => {
         PasswordService.deleteOne(passwordData._id)
-            .then(() => console.log('Password deleted'))
-            .catch((err) => console.log('Something went wrong while deleting, ', err))
+            .then(() => {
+                console.log('Password deleted')
+            })
+            .catch((err) => {
+                console.log('Error deleting password')
+            })
             .finally(() => {
                 PasswordService.getAll()
                     .then((data) => dispatch(setPasswordData(data)))
@@ -107,6 +122,7 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
                     <button onClick={deleteCurrentItem} className={styles.link}>Delete</button>
                 </div>
             </div>
+            <Alert message={alertMessage} isShow={!!alertMessage} />
         </li>
     )
 }

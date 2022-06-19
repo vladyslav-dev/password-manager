@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import GroupForm from '../../components/dashboard/GroupForm';
 import GroupService from '../../services/GroupService';
-import { IGroup } from '../../types/group';
+import { IGroup } from '../../interfaces/group';
 import styles from './style.module.scss';
 
 const EditGroup: React.FC = () => {

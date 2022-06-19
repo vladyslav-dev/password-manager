@@ -1,0 +1,27 @@
+@import '../../../styles/index.scss';
+
+.alert {
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition-property: top, transform, opacity, visibility;
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    border-radius: 6px;
+    background: $MAIN-GRADIENT;
+    color: $LIGHT-COLOR;
+    font-size: 14px;
+    z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+    @include useDropShadow;
+
+    &.active {
+        visibility: visible;
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+        top: 20px;
+        padding: 12px;
+    }
+}

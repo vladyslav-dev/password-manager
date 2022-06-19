@@ -52,6 +52,7 @@
         flex: 1;
         margin-right: 12px;
         min-width: 120px;
+        max-width: 120px;
 
         @include lg {
             max-width: 300px;
@@ -77,7 +78,14 @@
 
         .passwordUsername {
             margin-right: 12px;
-            flex: 1;
+            min-width: 294px;
+            max-width: 294px;
+
+            @include lg {
+                flex: 1;
+                min-width: 0;
+                max-width: 500px;
+            }
 
 
             .username {
@@ -89,13 +97,15 @@
         }
 
         .passwordSecret {
-            flex: 1;
             position: relative;
+            min-width: 294px;
+            max-width: 294px;
 
             @include lg {
+                flex: 1;
+                min-width: 0;
                 max-width: 500px;
             }
-
 
             .passwordSecretPass {
                 all: unset;

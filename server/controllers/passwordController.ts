@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import PasswordService from '../services/passwordService';
-import { IRequestAuth } from "../types";
+import { IRequestAuth } from "../interfaces";
 
 
 export default {
@@ -27,7 +27,6 @@ export default {
     },
     createOne: async (req: IRequestAuth, res: Response) => {
         try {
-            console.log(req.body)
             if (req?.user?._id) {
                 const password = await PasswordService.createOne({ passwordData: req.body, userId: req.user._id });
                 res.status(200).json(password);
@@ -48,8 +47,6 @@ export default {
     },
     deleteOne: async (req: Request, res: Response) => {
         try {
-            console.log('deleteOne')
-            console.log(req.params)
             await PasswordService.deleteOne(req.params.id);
             res.status(200).json({ message: 'Password deleted.' });
         } catch (err) {

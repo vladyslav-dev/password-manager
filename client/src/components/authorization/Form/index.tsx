@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthService from '../../../services/AuthService';
 import { setAuth, setUser } from '../../../store/slices/auth';
 import { useDispatch } from 'react-redux';
+import Alert from '../../common/Alert';
 
 interface IFormProps {
     title: string;
@@ -25,6 +26,8 @@ const Form: React.FC<IFormProps> = ({
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const [alertMessage, setAlertMessage] = useState<string>('');
 
     const [formData, setFormData] = useState<IFormState>({
         login: '',
@@ -45,8 +48,6 @@ const Form: React.FC<IFormProps> = ({
     const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        console.log(formData);
-
         if (type === 'register') {
             AuthService.registration(formData)
                 .then(data => {
@@ -54,6 +55,10 @@ const Form: React.FC<IFormProps> = ({
 
                     dispatch(setAuth(true))
                     dispatch(setUser(data.user))
+                })
+                .catch(err => {
+                    setAlertMessage(err?.response?.data?.message || 'Network error');
+                    setTimeout(() => setAlertMessage(''), 1800);
                 })
         }
 
@@ -64,6 +69,10 @@ const Form: React.FC<IFormProps> = ({
 
                     dispatch(setAuth(true))
                     dispatch(setUser(data.user))
+                })
+                .catch(err => {
+                    setAlertMessage(err?.response?.data?.message || 'Network error');
+                    setTimeout(() => setAlertMessage(''), 1800);
                 })
         }
     }
@@ -114,6 +123,7 @@ const Form: React.FC<IFormProps> = ({
                     {type === 'login' ? 'Sign up' : 'Sign in'}
                 </span>
             </div>
+            <Alert message={alertMessage} isShow={!!alertMessage} />
         </div>
     )
 }

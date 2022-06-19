@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PasswordForm from '../../components/dashboard/PasswordForm';
 import PasswordService from '../../services/PasswordService';
-import { IPassword } from '../../types/password';
+import { IPassword } from '../../interfaces/password';
 import styles from './style.module.scss';
 
 const EditPassword: React.FC = () => {

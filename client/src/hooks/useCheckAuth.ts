@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AuthService from "../services/AuthService";
 import { RootState } from "../store";
 import { setAuth, setUser } from "../store/slices/auth";
-import { IAuthResponse } from "../types/auth";
+import { IAuthResponse } from "../interfaces/auth";
 
 
 export default function useCheckAuth() {

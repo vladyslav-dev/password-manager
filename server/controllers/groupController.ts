@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import GroupService from '../services/groupService';
-import { IRequestAuth } from "../types";
+import { IRequestAuth } from "../interfaces";
 
 
 export default {
@@ -27,8 +27,6 @@ export default {
     },
     createOne: async (req: IRequestAuth, res: Response) => {
         try {
-            console.log('req.user')
-            console.log(req.user)
             if (req?.user?._id) {
                 const group = await GroupService.createOne({ title: req.body.title, userId: req.user._id });
                 res.status(200).json(group);
@@ -41,7 +39,6 @@ export default {
     },
     updateOne: async (req: Request, res: Response) => {
         try {
-            console.log(req.body)
             const group = await GroupService.updateOne(req.body);
             res.status(200).json(group);
         } catch (err) {

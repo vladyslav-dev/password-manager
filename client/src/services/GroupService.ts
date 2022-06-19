@@ -1,4 +1,4 @@
-import { IGroupService } from "../types/group";
+import { IGroupService } from "../interfaces/group";
 import $api from "../api/index";
 
 const GroupService: IGroupService = {

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import UserService from '../services/userService'
-import { IUserData } from '../types'
+import { IUserData } from '../interfaces'
 
 export default {
     registration: async (req: Request, res: Response, next: NextFunction) => {
@@ -61,8 +61,6 @@ export default {
     },
 
     async refresh(req: Request, res: Response) {
-        console.log('------------------')
-        console.log('check auth')
         try {
 
             const userData = await UserService.refresh(req.cookies['password-manager:refreshToken'])
@@ -74,8 +72,6 @@ export default {
 
             return res.json(userData); // {user, accessToken, refreshToken}
         } catch (err) {
-            console.log(err)
-            console.log('error in contrl')
             return res.status(401).json({
                 message: `${err}`
             })

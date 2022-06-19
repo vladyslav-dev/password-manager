@@ -1,6 +1,6 @@
-import { IUpdateGroup } from './../types/index';
+import { IUpdateGroup } from '../interfaces/index';
 import GroupModel from '../models/groupModel';
-import { ICreateGroup } from '../types';
+import { ICreateGroup } from '../interfaces';
 
 export default {
     getAll: async (userId: string) => {

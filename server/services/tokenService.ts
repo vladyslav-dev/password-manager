@@ -1,4 +1,4 @@
-import { IToken, ITokenGroup, IUserDto } from './../types/index'
+import { IToken, ITokenGroup, IUserDto } from '../interfaces/index'
 import TokenModel from '../models/tokenModel'
 import jwt from 'jsonwebtoken'
 

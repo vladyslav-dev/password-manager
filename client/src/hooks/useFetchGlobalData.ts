@@ -1,6 +1,6 @@
 
-import { IGroup } from './../types/group';
-import { IPassword } from './../types/password';
+import { IGroup } from '../interfaces/group';
+import { IPassword } from '../interfaces/password';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import GroupService from '../services/GroupService';

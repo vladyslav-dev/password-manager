@@ -1,4 +1,4 @@
-import { IPasswordService } from "../types/password";
+import { IPasswordService } from "../interfaces/password";
 import $api from "../api/index";
 
 const PasswordService: IPasswordService = {

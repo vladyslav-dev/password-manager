@@ -1,7 +1,7 @@
 import TokenService from '../services/tokenService'
 
 import { Response, NextFunction } from 'express'
-import { IRequestAuth, IUserJWT } from '../types'
+import { IRequestAuth, IUserJWT } from '../interfaces'
 
 export default function (req: IRequestAuth, res: Response, next: NextFunction) {
     try {

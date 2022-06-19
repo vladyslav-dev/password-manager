@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import GroupService from '../../../services/GroupService';
 import { setGroups } from '../../../store/slices/password';
-import { IGroup } from '../../../types/group';
+import { IGroup } from '../../../interfaces/group';
 import Button from '../../common/Button';
 import Input from '../../common/Input';
 import styles from './style.module.scss';
@@ -35,7 +35,6 @@ const GroupForm: React.FC<IGroupFormProps> = ({
             .then(() => {
                 GroupService.getAll()
                     .then((groups: IGroup[]) => {
-                        console.log('create new group')
                         dispatch(setGroups(groups))
                     })
                     .catch(err => console.log(err))

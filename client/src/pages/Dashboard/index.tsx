@@ -5,8 +5,8 @@ import InfoCard from '../../components/dashboard/InfoCard';
 import PasswordList from '../../components/dashboard/PasswordList';
 import Select from '../../components/dashboard/Select';
 import { RootState } from '../../store';
-import { IGroup } from '../../types/group';
-import { IPassword } from '../../types/password';
+import { IGroup } from '../../interfaces/group';
+import { IPassword } from '../../interfaces/password';
 import { transformGroupsToFilter } from '../../utils/select';
 import styles from './style.module.scss';
 
@@ -27,7 +27,8 @@ const Dashboard: React.FC<IDashboardProps> = () => {
         passwordCollection,
         groupsCollection,
         totalPasswords,
-        totalGroups
+        totalGroups,
+        isFetched
     } = useSelector((state: RootState) => state.passwordReducer);
 
     const [filterGroups, setFilterGroups] = useState<string>(FILTER_ALL);
@@ -35,7 +36,6 @@ const Dashboard: React.FC<IDashboardProps> = () => {
     const passwordData = useMemo(() => Object.values(passwordCollection), [passwordCollection]);
 
     const renderDataView = useMemo(() => {
-
         const dataView: IDataView = Object.values(passwordCollection).reduce((acc: IDataView, password: IPassword) => {
             const group: IGroup | null = password.group ? groupsCollection[password.group]: null;
             const groupTitle = group?.title || FILTER_ALL;
@@ -60,7 +60,7 @@ const Dashboard: React.FC<IDashboardProps> = () => {
         const { id } = event.target as HTMLDivElement;
         setFilterGroups(id)
     }
-    console.log(renderDataView)
+
     return (
         <div className={styles.dashboard}>
             <aside className={styles.aside}>
@@ -89,7 +89,7 @@ const Dashboard: React.FC<IDashboardProps> = () => {
                     />
                 </div>
                 <div className={styles.mainSection}>
-                    {(!Object.keys(passwordCollection).length && !Object.keys(groupsCollection).length) ? null : passwordData.length ? (
+                    {!Object.keys(passwordCollection).length && isFetched ? <FirstPassword /> : !passwordData.length ? null : (
                         <>
                             {filterGroups === FILTER_ALL ? (
                                 <>
@@ -108,8 +108,6 @@ const Dashboard: React.FC<IDashboardProps> = () => {
                                 />
                             )}
                         </>
-                    ) : (
-                        <FirstPassword />
                     )}
                 </div>
             </main>

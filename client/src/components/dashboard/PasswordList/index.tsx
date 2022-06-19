@@ -1,9 +1,9 @@
 import React from 'react';
-import { IPassword } from '../../../types/password';
+import { IPassword } from '../../../interfaces/password';
 import PasswordItem from './helpers/PasswordItem';
 import styles from './style.module.scss';
 import editSvg from '../../../images/icons/edit.svg';
-import { IGroup } from '../../../types/group';
+import { IGroup } from '../../../interfaces/group';
 import { useNavigate } from 'react-router-dom';
 
 interface IPasswordListProps {

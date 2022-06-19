@@ -1,4 +1,4 @@
-import { TGroupCollection } from './../types/group';
+import { TGroupCollection } from '../interfaces/group';
 import { IOption } from "../components/dashboard/Select"
 
 export const transformGroupsToOptions = (groupsCollection: TGroupCollection, currentId: string) => (
