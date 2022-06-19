@@ -13,8 +13,8 @@ const GroupService: IGroupService = {
     createOne: async ({ title }) => {
         return $api.post(`/group`, { title })
     },
-    updateOne: async ({ title, user }) => {
-        const response = await $api.put(`/group`, { title, user });
+    updateOne: async (data) => {
+        const response = await $api.put(`/group`, data);
         return response?.data;
     },
     deleteOne: async (id) => {

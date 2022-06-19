@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import GroupService from '../../../services/GroupService';
 import { setGroups } from '../../../store/slices/password';
 import { IGroup } from '../../../types/group';
@@ -22,6 +23,7 @@ const GroupForm: React.FC<IGroupFormProps> = ({
 }) => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [groupValue, setGroupValue] = useState<string>(groupData?.title || '');
 
@@ -39,6 +41,7 @@ const GroupForm: React.FC<IGroupFormProps> = ({
                     .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
+            .finally(() => navigate('/dashboard'))
         }
 
         if (type === 'update') {
@@ -55,6 +58,7 @@ const GroupForm: React.FC<IGroupFormProps> = ({
                     .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
+            .finally(() => navigate('/dashboard'))
         }
 
 

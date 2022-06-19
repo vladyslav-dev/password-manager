@@ -12,6 +12,10 @@
     background-color: $LIGHT-COLOR;
     height: 100%;
     border-radius: 24px;
+
+    @include sm {
+        padding: 12px;
+    }
 }
 
 @mixin useFormStyles {
@@ -23,6 +27,7 @@
 
         .formContainer {
             width: clamp(300px, 80%, 315px);
+            padding: 0 10px;
 
             .formItem {
                 display: flex;
@@ -46,4 +51,26 @@
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: break-word;
+}
+
+// ------------ Media ------------
+
+
+
+@mixin lg {
+    @media (max-width: 992px) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media (max-width: 580px) {
+        @content;
+    }
 }

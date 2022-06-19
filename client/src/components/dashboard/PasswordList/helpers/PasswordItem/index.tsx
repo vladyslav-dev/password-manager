@@ -63,29 +63,33 @@ const PasswordItem: React.FC<IPasswordItemProps> = ({
 
     return (
         <li className={styles.passwordItem}>
-            <div className={styles.passwordLogo}>{passwordData.service.trim().split('')[0]}</div>
-            <div className={styles.passwordService}>
-                <span className={styles.label}>Service</span>
-                <span className={styles.serviceName} title={passwordData.service}>{passwordData.service}</span>
+            <div className={styles.logoGroup}>
+                <div className={styles.passwordLogo}>{passwordData.service.trim().split('')[0]}</div>
+                <div className={styles.passwordService}>
+                    <span className={styles.label}>Service</span>
+                    <span className={styles.serviceName} title={passwordData.service}>{passwordData.service}</span>
+                </div>
             </div>
-            <div className={styles.passwordUsername}>
-                <span className={styles.label}>Username</span>
-                <span className={styles.username} title={passwordData.username}>{passwordData.username}</span>
-            </div>
-            <div className={styles.passwordSecret}>
-                <span className={styles.label}>Password</span>
-                <input
-                    className={styles.passwordSecretPass}
-                    value={passwordData.password}
-                    type={inputType}
-                    readOnly
-                />
-                <img
-                    src={copySvg}
-                    alt="copy"
-                    onClick={copyToClipboard}
-                    className={styles.copyPassword}
-                />
+            <div className={styles.dataGroup}>
+                <div className={styles.passwordUsername}>
+                    <span className={styles.label}>Username</span>
+                    <span className={styles.username} title={passwordData.username}>{passwordData.username}</span>
+                </div>
+                <div className={styles.passwordSecret}>
+                    <span className={styles.label}>Password</span>
+                    <input
+                        className={styles.passwordSecretPass}
+                        value={passwordData.password}
+                        type={inputType}
+                        readOnly
+                    />
+                    <img
+                        src={copySvg}
+                        alt="copy"
+                        onClick={copyToClipboard}
+                        className={styles.copyPassword}
+                    />
+                </div>
             </div>
             <div className={styles.options}>
                 <img

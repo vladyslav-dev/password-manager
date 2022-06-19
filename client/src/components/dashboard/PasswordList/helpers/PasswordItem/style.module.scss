@@ -8,19 +8,29 @@
     padding: 14px;
     display: flex;
     justify-content: space-between;
+    position: relative;
 
-    .passwordLogo {
-        width: 68px;
-        height: 68px;
-        border-radius: 12px;
-        background: $MAIN-GRADIENT;
+    @include lg {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .logoGroup {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 26px;
-        color: $LIGHT-COLOR;
-        align-self: center;
-        margin-right: 12px;
+
+        .passwordLogo {
+            min-width: 68px;
+            min-height: 68px;
+            border-radius: 12px;
+            background: $MAIN-GRADIENT;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            color: $LIGHT-COLOR;
+            align-self: center;
+            margin-right: 12px;
+        }
     }
 
     .passwordService, .passwordUsername, .passwordSecret {
@@ -31,12 +41,21 @@
             font-size: 11px;
             margin-top: 8px;
             margin-bottom: 8px;
+
+            @include lg {
+                margin: 0;
+            }
         }
     }
 
     .passwordService {
         flex: 1;
         margin-right: 12px;
+        min-width: 120px;
+
+        @include lg {
+            max-width: 300px;
+        }
 
         .serviceName {
             margin-top: 10px;
@@ -45,45 +64,61 @@
         }
     }
 
-    .passwordUsername {
-        margin-right: 12px;
-        flex: 3;
-        max-width: 212px;
+    .dataGroup {
+        display: flex;
+        min-width: 600px;
+        row-gap: 18px;
 
-        .username {
-            margin-top: 10px;
-            font-size: 14px;
-            opacity: .6;
-            @include textOverflow(1);
-        }
-    }
-
-    .passwordSecret {
-        flex: 4;
-        max-width: 205px;
-        position: relative;
-
-        .passwordSecretPass {
-            all: unset;
-            background-color: $LIGHT-COLOR;
-            border-radius: 12px;
-            width: 100%;
-            min-width: 200px;
-            height: 38px;
-            display: flex;
-            align-items: center;
-            padding-left: 6px;
-            padding-right: 38px;
-            font-size: 13px;
-            box-sizing: border-box;
+        @include lg {
+            margin-top: 14px;
+            flex-direction: column;
+            min-width: 0;
         }
 
-        .copyPassword {
-            position: absolute;
-            bottom: calc(38px / 2);
-            right: 12px;
-            transform: translateY(50%);
-            cursor: pointer;
+        .passwordUsername {
+            margin-right: 12px;
+            flex: 1;
+
+
+            .username {
+                margin-top: 10px;
+                font-size: 14px;
+                opacity: .6;
+                @include textOverflow(1);
+            }
+        }
+
+        .passwordSecret {
+            flex: 1;
+            position: relative;
+
+            @include lg {
+                max-width: 500px;
+            }
+
+
+            .passwordSecretPass {
+                all: unset;
+                background-color: $LIGHT-COLOR;
+                border-radius: 12px;
+                width: 100%;
+                min-width: 200px;
+                height: 38px;
+                display: flex;
+                align-items: center;
+                padding-left: 6px;
+                padding-right: 38px;
+                font-size: 13px;
+                box-sizing: border-box;
+            }
+
+            .copyPassword {
+                position: absolute;
+                bottom: calc(38px / 2);
+                right: 12px;
+                transform: translateY(50%);
+                cursor: pointer;
+            }
         }
     }
 
@@ -92,6 +127,12 @@
         align-items: center;
         margin-left: 24px;
         position: relative;
+
+        @include lg {
+            position: absolute;
+            top: 0;
+            right: 15px;
+        }
 
         img {
             cursor: pointer;
