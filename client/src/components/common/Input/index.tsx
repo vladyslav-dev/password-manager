@@ -17,7 +17,8 @@ const Input: React.FC<IInputProps> = ({
 
     const [inputType, setInputType] = useState(type);
 
-    const changePasswordVisibility = () => {
+    const changePasswordVisibility = (event: React.MouseEvent) => {
+        event.preventDefault();
         inputType === 'password' ? setInputType('text') : setInputType('password');
     }
 
@@ -42,7 +43,6 @@ const Input: React.FC<IInputProps> = ({
                     <img src={eye} alt='eye' />
                 </button>
             )}
-
         </div>
     )
 }

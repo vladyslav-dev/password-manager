@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c4487b01.css",
+    "main.js": "/static/js/main.bc60f2f1.js",
+    "static/media/auth-background.jpg": "/static/media/auth-background.ef97ce3fda1ee4d2586b.jpg",
+    "static/media/first-password-vector.svg": "/static/media/first-password-vector.68ae93125800cb94548300aa4c00dd27.svg",
+    "static/media/logo.svg": "/static/media/logo.bed6754212800b65e8f2a7b05c9dae31.svg",
+    "static/media/copy.svg": "/static/media/copy.1c439401b8ffdb11e5a4613b1e66e1db.svg",
+    "static/media/eye.svg": "/static/media/eye.a6fad8be08e3b80c1208d70aa239d196.svg",
+    "static/media/options.svg": "/static/media/options.3551ef5a01441b9b152fad416db44147.svg",
+    "static/media/edit.svg": "/static/media/edit.e7180399a9572da5d7fa9f926fbf3036.svg",
+    "index.html": "/index.html",
+    "main.c4487b01.css.map": "/static/css/main.c4487b01.css.map",
+    "main.bc60f2f1.js.map": "/static/js/main.bc60f2f1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c4487b01.css",
+    "static/js/main.bc60f2f1.js"
+  ]
+}

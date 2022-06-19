@@ -87,7 +87,7 @@ const Form: React.FC<IFormProps> = ({
                 </div>
                 <h1>{title}</h1>
             </div>
-            <form className={styles.form} action='#' onSubmit={submitHandler}>
+            <form className={styles.form} action='#' onSubmit={submitHandler} autoComplete="off">
                 <div className={styles.formContainer}>
                     <div className={styles.formItem}>
                         <Input

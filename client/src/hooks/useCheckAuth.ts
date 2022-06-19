@@ -33,15 +33,11 @@ export default function useCheckAuth() {
             dispatch(setAuth(false));
 
             navigate('/login');
-
-            console.warn('Token is not define, Unauthorized')
           })
       } else {
         dispatch(setAuth(false));
 
         navigate('/login');
-
-        console.warn('Token is not define, Unauthorized')
       }
     }, [])
 
