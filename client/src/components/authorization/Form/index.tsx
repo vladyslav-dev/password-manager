@@ -85,7 +85,7 @@ const Form: React.FC<IFormProps> = ({
                 <div className={styles.formLogo}>
                     <img src={logo} alt='Logo' />
                 </div>
-                <h1>{title}</h1>
+                <h1 role='title'>{title}</h1>
             </div>
             <form className={styles.form} action='#' onSubmit={submitHandler} autoComplete="off">
                 <div className={styles.formContainer}>

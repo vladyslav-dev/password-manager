@@ -4,6 +4,7 @@ dotenv.config();
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import mongoose, { ConnectOptions } from 'mongoose';
+import cors from 'cors';
 import routes from './routes/index';
 import path from 'path';
 
@@ -15,12 +16,17 @@ app.use(express.json());
 app.use(cookieParser());
 
 
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000'
+}));
+
 // Routes
 app.use('/api', routes);
 
 // Enviroment variables
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 const MONGO_URI = process.env.MONGO_URI;
 
 
